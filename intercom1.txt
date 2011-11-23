@@ -1,0 +1,309 @@
+Date: Wed, 26 Feb 1997 11:29:43 -0700
+From: David E Allen <davea@col.hp.com>
+Subject: Homemade Intercom Parts/Q&A
+
+Ideas for parts and cost for Stereo Intercom.
+Most can be found at Radio Shack (part# and prices from 1990 catalog)
+I'm not suggesting you buy them there, but it's to give an idea of
+avaliability and price.
+Rev 1.1 some resistors had "272" prefix instead of 271
+
+Audio IC's:
+1 ea CD4066 or 4016
+1 ea LM324           276-1711     1.29
+1 ea LM339           276-1712      .99
+2 ea LM386           276-1731     1.09
+
+Power supply divider:
+2 ea 100k 5% 1/4w   271-1347   5/.39
+1 ea .1uF disc      272-109    5/1.79
+
+External Power supply (choose this or 9v or both):
+1 ea LM317L           276-1778     1.99 (LM317T see note 1)
+1 ea 100uF Elec/Tant  272-1016      .79
+1 ea 10uF Tantalum    272-1436      .79
+1 ea 243-ohm 1%       271-1314    5/.39 (270 see note 2)
+1 ea 1690-ohm 1%      271-1321    5/.39 (1k see note 2)
+1 ea 1N4001 (1a,50v)  276-1101    2/.49
+
+Battery (9v) supply:
+1 ea battery snap conn. 270-325  5/1.19
+1 ea battery holder     270-326   2/.69
+
+Mic inputs (for 2 mics):
+2 ea 1k 5% 1/4w      271-1321   5/.39
+5 ea .1uF disc      272-109    5/1.79 (ok for 1uF on schem)
+3 ea 100k 5% 1/4w   271-1347   5/.39
+1 ea 300pF disc(220pF) 272-124  2/.39
+1 ea .001uF disc       272-126  2/.49
+
+Inputs:
+3 ea .001uF disc    272-126      2/.49
+1 ea .1uF disc      272-109     5/1.79
+2 ea 1uF Tant       272-1434       .59
+1 ea 680 5% 1/4w    271-1321     5/.39 (1k is close enough)
+2 ea 10k 5% 1/4w    271-1335     5/.39
+2 ea 470k 5% 1/4w   271-1354     5/.39
+
+Mute comparators:
+4 ea 10k 5% 1/4w    271-1335     5/.39
+1 ea 1M 5% 1/4w     271-1356     5/.39
+2 ea 33k 5% 1/4w    271-1341     5/.39
+2 ea 560k 5% 1/4w   271-1356     5/.39 (1M is close enough)
+1 ea 50k 15-turn pot  271-340     1.49 (20k is fine)
+1 ea 5k linear pot    271-1714    1.09
+2 ea 1uF Tant       272-1434      .59
+2 ea 1N914/4148     276-1122    10/.99
+
+Main Mixing section:
+6 ea 75k 5% 1/4w    271-1347    5/.39 (100k is fine)
+2 ea 6800 5% 1/4w    271-1335     5/.39 (10k is fine)
+1 ea 300pF disc(220pF) 272-124  2/.39
+
+Output sections:
+2 ea 1uF Tant       272-1434      .59
+1 ea stereo control  271-1732    1.99
+2 ea 330uF Elec      272-1029     .89 (220uF)
+2 ea 10 5% 1/4w      271-1301   5/.39
+4 ea 100 5% 1/2w     271-012    2/.19
+6 ea .001uF disc       272-126  2/.49
+
+Misc:
+1 ea Mic for testing   270-090   1.79
+1 ea 4p2t switch                      (bypass)
+1 ea dpdt switch     275-603     1.59 (optional-for both ext and int power)
+1 ea power connector or cigar plug
+2 ea 1/4" 3-cond jacks    274-312   2/2.49
+3 ea 1/8" 3-cond jacks    274-251   3/1.59
+2 ea 3/16" 3-cond jacks (mics)
+2 ea knobs
+1 ea ckt board
+1 ea 1/4" 3-cond plug (cord to acft jacks)
+1 ea 3/16" 3-cond plug (cord to acft jacks)
+1 ea PTT switch (external, yoke mounted)
+hardware, standoffs, ic sockets, wire-wrap?, solder, box
+
+
+Notes:
+1) The LM317L is low-power and is the size of a small transistor, and
+current-limits at under .5amp. The "T" is the size of a large "tab"
+transistor and current-limits at 1.5 amps. The L is preferred, but the T
+will work. It might make more smoke from your PC board, though.
+
+2) The regulator resistors are some of the few critical parts in the intercom.
+A divider can be made of more common 5% parts like a 270-ohm and 2k resistor
+(for the 243 and 1690 respectively). Use 5% parts at least. The 2k can be
+two 1k resistors in series.
+
+The 3/16" jacks and plug will be hard to find. They are usually just used in
+military gear. A surplus electronic store might have some cheap. The plug
+especially can cost from $4 to $12 from acft suppliers. RST (kit avionics)
+has good prices. You'll also hear the 3/16" expressed
+in decimal, .206 or .21".
+
+RST is Radio Systems Technology in Grass Valley CA.
+Their website: www.rst-engr.com
+Their email: sales@rst-engr.com
+
+Plug:
+  Mil PJ-068
+  Switchcraft 480
+  Newark 39F791 ($7.95)
+  RST #64240 ($3.00)
+  Wag Aero C-315-001 ($11.50)
+Jack:
+  Switchcraft S-12B, Newark 39F666 ($2.48).
+  Switchcraft C-12B, Newark 39F667 ($3.28).
+  RST #64250 ($2.25)
+  Wag Aero C-316-001 ($4.75)
+
+--------------------------------------------------------------------------
+
+HOMEBUILT INTERCOM, QUESTIONS AND ANSWERS NUMBER 1
+
+> I'm wondering about the aircraft jacks for headphone and mic.
+> For the headphone jack, two conductors: mono signal and ground 
+> (I assume that means to the airplane body).
+
+Right. The signal is in the TIP and the ground on the SLEEVE of the 1/4"
+mono acft jack or headphone plug.
+
+> For the mic jack, three conductors, mic, PTT, and ground.
+> Connecting PTT to ground keys the transmitter.  The mic hooks
+> between mic and ground, and is always connected (just not
+> transmitting until PTT is pushed).
+
+Right. The PTT is the TIP, the MIC signal is the RING, and ground on the
+SLEEVE of the 3/16" connector.
+
+> For the PTT itself (the black ones you find Velcro'd to the
+> yokes), from photos in Sporty's it looks like the male plug 
+> is 3-conductor (and plugs into the plane's mic jack), and 
+> I'll guess that the female is 2-conductor (and you plug in 
+> your mic here).
+
+The commercial PTT switches do two things when pressed: PTT is grounded; and
+the MIC signal is connected through from the jack to the plug. The inline
+jack (female) is also 3-conductor BTW. I'm told it's not necessary to 
+open and close the MIC line, but this is usually done by PTT switches, and by
+hand-held mics.
+
+You could eliminate the need for the commercial PTT switch by wiring a button
+onto the intercom and wiring it from the PTT line to ground. You could also
+put a PTT jack on the intercom (1/8" mono) and make your own PTT switch to
+mount wherever. If you do a button on the intercom, make sure it's in a place
+where it doesn't get bumped or switched on accidentally.
+
+But the commercial ones (velcro and nice switch) are nice, and can be had for
+$20. The commercial PTT switch goes between the intercom and the acft mic
+jack. You should make one modification to a commercial PTT switch. On
+mine, the PTT line was grounded JUST on the male (plug) end. The jack (female)
+end was left floating. This meant that the intercom did not activate the mics
+when PTT was pressed. It would activate the mics due to speech, but this is
+not the best method for radio transmissions. Use an ohm-meter to see if your
+commercial PTT switch works this way. If so, open the inline jack(female)
+and find a heat-shrink junction where the PTT line from the male plug is
+connected to the cord going to the actual switch. Remove the heat-shrink and
+solder both these wires to the PTT contact on the inline jack (the one farthest
+from the face of the jack). If in doubt, put a mic plug into the jack and see
+which contact hits the TIP. Be careful soldering inside this connector,
+because when you put it back together, it will be compressed and you don't
+want any bare wires sticking where they don't belong.
+
+I have my velcro PTT switch mounted on the HORIZONTAL part of my yoke, on the
+rear surface, near the part you grab, and I press it with my ring and
+little fingers. This way my "main" fingers and thumb don't have to be moved
+from "flying" position to transmit.
+
+> Do you know how standard aircraft headsets are wired at the 
+> plugs? I'm building the intercom with all 1/8" jacks
+
+The acft headsets will be wired ground to SLEEVE and signal to TIP, like the
+acft phone jack. A normal 1/4"(female) to 1/8"(male) mono adapter will work
+to adapt the 1/4" headsets to your 1/8" jacks. A rigid adapter will put more
+stress on the 1/8" jack in the intercom, so an adapter that's includes a
+length of cord is preferred.
+
+dave allen
+
+HOMEBUILT INTERCOM, QUESTIONS AND ANSWERS NUMBER 2
+
+> I've been working on the intercom.  My partner, an 18,000 hour
+> [ex. military] commercial pilot is adamant that the passenger
+> mics be OFF when PTT is pressed.
+
+Probably a good idea. Even if the passenger(s) are quiet, the mic(s) will
+still pick up cabin noise which gets added to your transmission. I wired
+mine for both open because my wife likes to talk on the radio. I really need
+to use the unused comparator (339) and make it so she has her own PTT button
+and my PTT cuts her mic, but her PTT doesn't. Anyway, just cutting out the
+other mics with PTT and leaving the pilot's mic open is easy:
+
+1. Leave the pilot mic 4066 control line connected to the LM339 (pin 13) and
+   10k pullup resistor as original.
+2. Separate all the other mic 4066 controls from the pilot's, but leave them
+   tied to each other.
+3. Give them their own pullup (10k) to V+.
+4. Connect them to the LM339 output (pin13) through a diode with cathode
+   (band) toward the LM339.
+5. Connect them also through another diode to PTT with cathode to PTT.
+
+The diodes form a nice "or" gate (negative logic). This means that:
+1. other mics are muted if no one is speaking OR PTT is active.
+2. other mics are on if someone is speaking AND PTT is inactive.
+
+The pilot's mic works as before:
+1. pilot mic is muted if no one is speaking and PTT is inactive.
+2. pilot mic is on if someone is speaking or PTT is active.
+
+The LM339, by the way, is "open-collector" which means it only pulls down
+(only "connects" to ground). It's like it has a diode in its output with
+cathode toward the inside of the part.
+
+The 4066 is an interesting part. Basically you need V+ and ground (pins 14 and
+7), and you need all the analog inputs/outputs to be somewhere between these,
+DC-wise. I have biased them all to mid-way with the Vmid and the op-amps.
+The input/output pins of each pair are interchangeable. An output can be an
+input or vice-versa. Each control line turns on its switch when it is above
+the half-way point from gnd to V+, and turns off when it is below half-way. 
+There is supposedly 1 volt of hysteresis in the control line, so the slow-
+rising signal of the music mute LM339 does not cause a problem. With nothing
+connected, the control line is unpredictable. It needs to be pulled up (hi
+toward V+) or down (low toward gnd). We use the 10k pullup resistors to
+pull it up, and the LM339 (or PTT through diodes) to pull it down. The
+voltage drop across the diodes doesn't matter since it's 0.6v compared to
+a 10-volt swing. You'll find this part in a CMOS databook that covers the
+4000 series (a very basic series). Remember the 4066 is equivalent to the
+4016, just a bit better.
+
+> p.s. finally got some XC in last weekend when I went to visit 
+>      some old friends.  Airplanes are neat, aren't they.
+
+Amen to that.
+dave allen
+
+HOMEBUILT INTERCOM, QUESTIONS AND ANSWERS NUMBER 3
+
+> The electronics tech at school noticed that a fuse was not 
+> included in the schmatics.  Is one necessary?  
+
+Well, not being an expert I can't say for sure. A 1-amp fuse on the
+input wouldn't hurt. I'm counting on the LM317L to limit current to
+about 400ma. The LM317 (not -L) would limit at 1.5a which mignt be a
+bit much, so if you're using the non-L, you might want a fuse. Also,
+there's no fuse in the battery circuit. You might want one there. I
+figure for a small battery it will run down before the cabin gets too
+full of smoke.
+
+> Also, will this intercom work if plugged into a 28V electrical
+> system airplane, or is it restricted to 14V?
+
+The LM317[L] will take up to 40 volts between input and output so 28v would
+be no problem. Make sure the input cap is rated at 40v or so. The regulator
+will run a little warmer in a 28 volt system because of the larger voltage
+drop across it, but with the intercom only pulling about 20ma, it should
+be no problem.
+
+dave allen, colorado springs
+
+HOMEBUILT INTERCOM, QUESTIONS AND ANSWERS NUMBER 4
+
+> Can an "ON THE AIR" light be easily added to this intercom.
+>
+>    Vs <---VVV--->|--->PTT Line
+>                //
+>               (LED)
+>
+> Given a nominal 10V Vs, what R would you recommend?
+>
+> Should a pot be added to turn it down at night?
+
+Yes, your idea for the Transmit light should be fine.
+If you're using the external 13 volts for your intercom, you can run the led
+from there instead of the regulated supply, just to put less load on the
+regulated. But if you're using a 9v internal battery, or both internal and
+external power, you can run it from the main (regulated) V supply.
+I'm not sure what resistor values to use. You might use a 5k or
+10k pot on the bench just to experiment. It can depend on the led. I'm
+guessing about 1k-2k for the night setting and 330 or 470 for the daytime. I
+would use two fixed resistors in the unit (with a switch) rather than a pot,
+since the pot would be harder to work - having to adjust it each time - and
+would take up more space. If you know the max normal current for the led,
+calculate the min resistor value as follows: divide 8.8 by that current to
+get the min resistance (for max brightness). The 8.8 is the voltage across
+the resistor (10 volts minus 1.2 volts for the led). So an led that should
+have a max of 20ma across it would need at least 8.8/.02 = 440, or a 470 ohm
+resistor as the series resistor.
+
+I recommend a single-pole single-throw switch. It's cheapest and most failsafe.
+You could use a double-pole and select one resistor or the other, but if the
+switch fails open, you have no led indication.)
+
+So wire both the day and night resistors in series (between the power and led)
+with the switch across the night resistor. Closing the switch and shorting
+across the night resistor would give you the daytime brightness.
+
+The total night resistance will be the sum of the two resistors, but the day
+resistor will be small compared to the night one.
+
+dave allen, colorado springs

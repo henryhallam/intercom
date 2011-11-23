@@ -1,0 +1,292 @@
+Date: Wed, 26 Feb 1997 11:29:43 -0700
+From: David E Allen <davea@col.hp.com>
+Subject: Homemade Intercom Schematic
+
+Circuit suggestions for the Stereo Intercom:
+
+Suggestion: Trace over the connections and draw the "real" part symbols
+over the 'ascii' parts for readability.
+
+Rev 1.01 mic resistor in main mixer 10k to 6800 and gain of 10 vice 7,
+         rf bypass in headphone outputs
+Rev 1.02 Suggestion
+Rev 1.1  (1may91) 1k and 100 to mic output to acft mic input
+Rev 1.2  (6jun91) remove 1k from mic output to acft mic
+Rev 1.3  (12jul91) LM324 pin numbers 5,6 swapped in Vmid source (- and + ok)
+                   LM324 in mic summing input to pins 8,9,10 - 12,13,14 used
+                   in audio summing circuit
+Rev 1.4 (23sep91) 4066 for right music input, pin 5 (not 6) controls pins 3,4
+Rev 1.5 (8jul93)  2 "mic"s in MUTE COMPARATOR are really "pilot mic" & "co-mic"
+Rev 1.6 (5jan94)  clarify switching between battery and regulator supply
+                  note on LM317L
+
+-VVV-   resistor
+
+-||- or  ===  capacitor
+
+-|<- or  ->|- diode
+
+   v---
+--VVV--   potentiometer
+
+   |
+---+---  traces meet
+   |
+
+POWER DISTRIBUTION:
+  Note: I have one 10uF near the LM317L and one near the LM386's. Orientation
+  of electrolytics/tantalumns is not shown. Put the + side where the higher
+  voltage is.
+Part    V+   gnd
+LM324    4    11
+LM339    3    12
+LM386    6     4
+4066    14     7
+
+POWER SUPPLY------------------------------------------------------------------
+               1a,100v
+           +-----|<-------+      (battery only or battery and SPDT switch here)
+           |   ________   |       V
++13v >-+---+-3| LM317L |2-+-----+----+------------------------> V+ source
+       |   |  |________|  |     |    |        +-------------+
+ .001u=== ===100u |1      | 10u===   |        |   _______   |
+       |   |      +--VVV--+     |    +-VVV-+  +-6|- LM324|  |
+      gnd gnd     |  243       gnd    100k |     |    out|7-+-> Vmid
+                  +-VVV-gnd        gnd-VVV-+----5|+______|
+                   1690               100k |
+                                    gnd-||-+
+                                       .1u
+Numbering of these regulator pins varies. I number 1-2-3 left-to-right while
+looking at the flat side of the part. The power supply provides regulated,
+filtered (no alternator noise) power at about 10v and a middle voltage to
+bias the op amps to the center of their operating range. (Audio signals are
+AC-coupled to the op amps.) Acft mics seem to like 10v. I don't see any
+problem hooking this into a 24v system, as long as the 100uF cap on the input
+has the voltage rating. The diode across the regulator protects it from
+reverse current when you shut off the acft master switch and the energy stored
+in the intercom tries to discharge through the regulator into the acft bus.
+If battery only is desired (current is about 20ma), put the battery in as
+indicated and omit the regulator circuitry. I have a SPDT switch and battery
+inserted there to use acft power OR battery (9v) as a backup. If you do this,
+make sure the 10uF cap stays WITH the LM317L. All lines entering or leaving
+the intercom are bypassed to ground with .001uF for RF. The 243 and 1690
+resistors are 1%. They don't need to be. 240 and 1600-1800 should be fine.
+If 1600-1800 are unavailable, use a 2k or 5k trim-pot. Note that I used an
+LM317L (low-power). It is small and current limits at around 150ma. This is
+plenty for the intercom and protects it better from smoking than the LM317,
+which would provide something like 1.5A at current limit.
+
+MIC INPUTS-------------------------------------------------------------------
+
+      +-VVV-(V+)
+pilot | 1k           ______
+mic --+-----+-||--10| 4066 |11--VVV----+
+      |     | 1u    |______|    75k    |
+.001u===    |          |12             |
+      |     |          +--<fm mic mute |
+     gnd    +-||--> to mic comparator  |
+              1u                       |     300p
+                                       +-----||--------+
+                                       |     75k       |
+      +-VVV-(V+)                       +-----VVV-------+
+co-   | 1k           ______            |    _______    |
+mic --+-----+-||---8| 4066 |9----VVV---+--9|- LM324|   |
+      |     | 1u    |______|     75k       |    out|8--+--> to main mixer
+.001u===    |          |6         (Vmid)-10|+______|   | 1u 100
+      |     |          +--< from mic mute              +-||-VVV+---->acft mic
+     gnd    +-||--> to mic comparator                          |
+              1u                                          .001===
+                                                               |
+                                                              gnd
+I'm using two mic inputs - pilot and copilot. You could use more for
+passengers. You'd need to either sum(mix) them and then run them through one
+switch, or run each input through its own switch and sum them with another
+LM324 section and present that output to the Main Mixer. You'd also sum them
+through 1u capacitors and 10k resistors to the Mic Comparator.
+
+The 1k resistors at the mic input are for DC power to the mics. The signal
+is then AC-coupled to an analog switch and to the Mic Comparator. These
+switches are normally off (low signal), and are turned on when the Comparator
+senses a signal on the mic lines. When turned on, the mic signal (from both
+mics) is summed by the LM324 section and presented to the Main Mixer. This
+summed signal is also presented as an output to the acft mic input for radio
+transmissions. Because the circuit has a gain of one, the same level of mic
+signal should be presented to the acft transmitter as was without the intercom
+installed.
+
+I used 75k in the summing and feedback part of this (and other) circuits,
+because I had a ton of them. 50k to 100k would be fine. The 300p in the feed-
+back was recommended even though the LM324 is "internally compensated".
+
+Rev1.2: Deleted the 1k from acft mic to gnd added in Rev 1.1.
+
+Rev1.1: The mic feed for the acft radio was causing distortion in both the
+intercom and the radio. The 1k to ground puts a DC load on the acft mic
+circuit similar to an acft mic, all of which are DC powered. My PTT switch
+(between the mic output and the acft mic input) is the kind that opens the
+mic circuit as well as grounding the PTT input. It went bad, so I shorted
+across the mic part of the switch. This caused a load and distortion in the
+intercom. The 100 ohm resistor in series with the output should lighten this
+load and remove the distortion. If your PTT switch opens the mic line, you
+won't need it.
+
+ACFT RADIO INPUT-------------------------------------------------------------
+
+radio --+---+-||--> to main mixer(left and right) and music mute comparator
+        |   | .1u
+  .001u===  |
+        |   +-VVV-gnd
+       gnd    680
+This merely bypasses RF to ground (.001uF), provides load and DC path to
+ground through the 680-ohm resistor, and AC-couples the signal to the Main
+Mixer(s) and Music Mute Comparator.
+
+MUSIC INPUTS----------------------------------------------------------------
+                        470k
+                   +----VVV-----+
+left channel       |   ______   |
+music --+---+-||---+-1| 4066 |2-+--> to main mixer(left)
+        |   | 1u      |______|
+  .001u===  |            |13
+        |   +-VVV-gnd    +--< from music mute
+       gnd    10k
+                        470k
+                   +----VVV-----+
+right channel      |   ______   |
+music --+---+-||---+-3| 4066 |4-+--> to main mixer(right)
+        |   | 1u      |______|
+  .001u===  |            |5
+        |   +-VVV-gnd    +--< from music mute
+       gnd    10k
+
+These inputs use 10k for the DC path and load. Anything 1k-10k should be fine.
+The switches are normally on (hi signal to gates), but are turned off by
+microphone or acft radio input or PTT. The larger (1uF) caps are used to
+improve the bass (more important to the music than the acft radio). The 470k
+resistors across the switches provide for a partial mute. Omit them if total
+mute is desired, or experiment with their value to suit. The inputs/outputs of
+these switches (4066) are interchangeable.
+
+MUSIC AND MIC MUTE COMPARATORS-----------------------------------------------
+
+(acft         ________    +-VVV-(V+)
+radio)--VVV-4|- LM339 |   | 560k
+        10k  |     out|2--+---+-----> to music mute switches(2)
+         v--5|+_______|   |   |
+   (V+)-VVV-gnd        1u===  +->|--+
+        50k               |         |
+(pilot                   gnd        |
+ mic) >-VVV-+                       |
+(co-    10k |                   (V+)|
+ mic) >-VVV-+                     | |
+        10k |   _______     +-VVV-+ |
+(Vmid) -VVV-+-8|- LM339|    | 560k  |    _______    +-VVV-(V+)
+        1M     |    out|14--+--+----+-10|- LM339|   | 10k
+          v---9|+______|    |  |        |    out|13-+-----> to mic switches
+(V+)-VVV-VVV-VVV-gnd     1u=== | Vmid-11|+______|
+     33k  5k 33k            |  +->|--> to PTT
+                           gnd
+
+The upper LM339 compares audio from the acft radio to a dc level set by the 50k
+pot. The acft radio signal was AC-coupled, but here has a DC path to the Main
+Mixer(s), which puts it at about Vmid. I used a multi-turn pot for the 50k,
+and made it accessible through a hole, although once set on the bench, I
+haven't had to change it in the airplane. As a positive peak in the radio
+audio exceeds the DC level set by the 50k pot, the LM339 output goes low,
+discharging the 1uF cap and pulling the control line low to the music mute
+switches, turning them off. When the audio drops back below the DC threshold,
+the LM339 output goes hi, but it is an open-collector output, so the 1uF
+cap charges through the 560k resistor. The switches have their own hysteresis
+and don't mind the slow edge of the control line rising. The 560k/1uF gives
+about a second of delay turning off the mute. Experiment with this value -
+say 1M-ohm for more delay.
+
+The Mic comparator is a bit more complex. It sums the two (or more) mic
+signals with the 10k resistors, and adds a DC level from Vmid through 1M.
+The threshold is also set by a pot, but this one (call it squelch) should
+be on the front panel. A 5k pot with 33k on either side (to V+ and gnd) should
+give enough range, and a good control (not too touchy). The LM339 output
+goes low as with the radio comparator, but this is the opposite signal from
+what we want. When we detect mic audio, we want a hi signal to turn ON the
+mic switches. Another comparator with threshold set at Vmid inverts the low
+signal to a high signal to turn ON the mic switches. When there is no mic
+audio, the first output rises to a high level as the 1uF cap charges through
+the 560k resistor, and the second LM339 output goes low, which mutes
+(squelches) the mic input by turning off the mic switches. This second output
+controls both mic switches (pilot and copilot). It requires a 10k or so pullup
+resistor since the LM339 is open-collector.
+
+Back to that first (low) signal. We use this low signal - through a diode -
+to turn OFF the music switches. Also notice a diode from this point to PTT.
+When PTT is pressed (low), this line is also pulled low, forcing the mics
+ON when PTT is active, and through the diode to the music switches, forcing
+the music to mute.
+
+MAIN MIXING SECTION (Left or Right Channel)----------------------------------
+                              300p
+music(from switch) >-VVV-+-----||--------+
+                     75k |     75k       |
+radio >--------------VVV-+-----VVV-------+
+                     75k |    _______    |
+(from mic mixer) >---VVV-+-13|- LM324|   |
+                     6800    |    out|14-+-> to output section
+                   (Vmid)--12|+______|     (other channel uses pins 1,2,3)
+
+This section sums the music, radio, and mic signals for presentation to the
+output amp. There is one for each channel. It has one-to-one gain for the
+music and radio (again the 75k could be 50k-100k), and has a gain of about 10
+for the mic signal. This is not critical, but keep the ratio close. If you
+use 100k in the other paths and the feedback path, try 10k in the mic path.
+In use, you'll be setting the intercom volume by speaking into the mic(s),
+and setting the acft radio and music volumes by the controls on those units.
+
+HEADPHONE OUTPUT (left or right channel)-------------------------------------
+                 ________
+          gnd--2|-  LM386|
+                |     out|5--||--+-VVV--->  pilot and co-pilot phones
+       v-------3|+_______|  330u | 10
+>-||--VVV---+                    +-VVV--->  passenger 8-ohm phones
+  1u  100k  |                    | 100
+           gnd                   +-VVV-+->  passenger 8-ohm phones
+                                   100 |
+                                      ===.001 (in each output)
+                                       |
+                                      gnd
+
+Finally, give me something I can hear. The LM386 may be overkill to drive
+600-ohm phones, but why not let it loaf? And it's just the thing for 8-ohm
+phones. Build one per channel. The audio from the Main Mixer(s) is AC
+coupled to the volume control. Yep, this chip somehow doesn't mind an
+input signal that is referenced to ground - internal bias generators and all
+that fancy stuff. Radio Shack has a nice 100k dual (stereo) volume control,
+but anything down to 5k would work as well, or higher, I suppose.
+
+The 330uF output cap(s) can be as low as 50uF, but the lower you go the more
+bass you're going to lose. It can be higher, depending on what caps you have
+lying around and how much room you have in your intercom box. The higher
+voltage (and thus the + side of the cap) is at the LM386 output. The 10-ohm
+resistors on the 600-ohm phone outputs are mainly to help the LM386 survive
+somebody plugging a mono headphone into the jack. This would short the right
+channel to ground, since that channel comes through the "ring" on the 3-
+connector stereo plug, and that connection would be grounded against the
+barrel of a 2-conductor (mono) plug. The LM386 claims it can withstand an
+indefinite short to ground, but why heat it up and run down your battery?
+The 100-ohm are what I found necessary to balance MY 8-ohm headphones to the
+600-ohm ones. Apparently they are MUCH more efficient than my 600-ohm
+(Flightcom, and the 8-ohms are the cheapest Radio Shack with muffs). You'll
+have to experiment with these values to balance your 8-ohm headphones. If
+you want your headphone jacks to be inter-changeable, use the same (eg 100)
+resistors for all the phones. You won't notice that much difference in the
+600-ohm sets.
+
+DISCUSSION------------------------------------------------------------------
+Later I'd like to mute the copilot's mic when the pilot pushes PTT, but now
+both mics are "hot" when PTT is pressed (so warn the copilot when you're going
+to transmit). The one intercom that I've used had provision for two PTT lines,
+one for pilot and one for copilot. When either was pushed, the other's mic
+was muted, so you only had one hot mic while transmitting. If both PTT's are
+pushed together, you got NO hot mic. I thought I would vary this by keeping
+the pilot's mic hot when transmitting, but muting the copilot's when the
+pilot transmits.
+
+dave allen, colorado springs

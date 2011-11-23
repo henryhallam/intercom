@@ -1,0 +1,167 @@
+Date: Wed, 26 Feb 1997 11:29:42 -0700
+From: David E Allen <davea@col.hp.com>
+Subject: Homemade Intercom General Info
+
+Hi. Here's the general info on the homemade intercom.
+The schematic and parts/questions-and-answers will follow separately.
+Any comments on the technical aspect of it are welcomed.
+----------------------------------------------------------------
+Description of a stereo intercom. The intercom consists of several sections:
+
+Power supply: Regulates and filters the +13v acft supply to +10v (V+) and
+provides a "mid" supply voltage of +5v (half the +10v) for the op amps. A 9v
+battery can be used for the V+. Draw is about 20ma.
+
+Mic input: Provides DC power for the microphones and coupling.
+
+Mic mixing: Mixes the pilot and co-pilot microphones to feed the Main Mixing
+section and the acft mic input for transmitting on the radio.
+
+Misc input: Provides a DC path and load for the acft radio and music inputs,
+as well as DC isolation for the Main Mixing stage.
+
+Muting: The microphone inputs are normally muted (squelched) and the music
+input is normally active. A comparator senses mic input and un-mutes
+the mics when speaking. A squelch control sets the un-mute level. Another
+comparator senses the acft radio input and mutes the music inputs when
+a signal comes in from the radio. A threshold control for this is internal,
+accessible through the side of the unit. The music inputs are also muted
+when the mic comparator detects mic input. A bypass resistor provides
+partial - rather than total - muting so the music drops to a low level
+rather than being totally blocked. The mics are made active and the music
+muted whenever PTT is pressed. I intended to also mute the copilot's mic when
+the pilot's PTT is pushed. I haven't implemented this yet. So both mics are
+active when the PTT is pushed. This means you need to warn the copilot when
+you are going to transmit. It also means the copilot may handle communications
+using the same (pilot's) PTT. (My wife likes to talk on the radio.)
+
+Main Mixing(left and right): Separates the mono signals (mic and acft radio)
+into left and right channels, and combines mic, radio, and music into one
+signal for each channel.
+
+Output(left and right): Amplifies each stereo channel and provides output
+for 600-ohm stereo and 8-ohm stereo headphones.
+
+General:
+This intercom is not professionally designed. It works, but that may be by
+luck. I've done my best to do what is right, but I'm not an expert. Use these
+ideas at your own risk.
+
+The intercom provides amplification and muting (squelch) of two microphones -
+pilot and copilot. More microphones can be added with additional circuitry.
+The microphones are voice-activated, although the PTT (push-to-talk) switch
+forces them to be active.
+
+The intercom provides for stereo music input from a tape-player or whatever.
+The music level is reduced when microphone or acft radio input is detected,
+or the PTT is pressed.
+
+This is a stereo intercom, designed for stereo headphones of 600 or 8 ohm.
+It is presently configured for two 600-ohm and two 8-ohm headphones, but it
+is simple to add more of either kind. It can be configured so the 600 or 8 ohm
+headphone outputs are interchangeable. It could, of course, be built as a
+mono unit, or mono/stereo. It could be built without the music circuitry and
+just handle microphone and acft radio inputs. (It could be build so that the
+passengers hear pilot in the left ear and the co-pilot in the right ear. :-)
+
+I've built it in blocks or sections. This helps me keep it all straight. It
+also will help you customize it and build it differently if you want (mono
+or whatever else).
+
+Construction:
+I used wire-wrap for construction. This is a neat (ie, tidy) way to do it, and
+for me it was a good way to experiment and try things out and change them as
+needed. I don't have a PC board for this, and don't anticipate building any.
+It is, as advertised, a "from scratch" project. Not a kit by any means.
+If you're going to use this in an acft or motorcycle, remember it needs to be
+rugged for the vibration and abuse that it will see.
+You won't need any test instruments, although the curious will find use for
+a volt-meter of any type. A DC power supply is handy, but a little 9-volt 
+battery will do nicely.
+
+Start with the output sections. They are very simple (few parts), and you'll
+be able to hear and enjoy the fruits of your labors very quickly. Wire up the
+two LM386's, volume control, and output caps to one set of phones (8 or 600
+ohm). You don't even need the output resistors yet. Leave the headphones off
+for the initial test. Your ears don't need to be a part of this yet. Get out
+your all-purpose sophisticated electronic test gear - one of the fingers you
+were born with. Touch (gently at first) the IC's. Hot? Power OFF. They're
+wired wrong or oscillating (check layout or put a 1-10uF cap from V+ to
+ground near the IC's). Cool? On to test #2. Open the volume control about
+1/4, and using the same electronic test equipment, touch the input of the
+volume control. You should hear a terrible buzz/hum, but hey, it works. And
+if this is your first project, that's the neatest buzz/hum you've ever heard.
+Now (not before) put the headphones on and see how the volume control is
+working. You may now hook your tape player up directly (no caps) to the input
+side of the volume control (and to ground) and hear something better than
+your finger. Caution: You will tend to waste a lot of time here listening
+to the music. In fact this much of the intercom works with 8-ohm speakers.
+You know those amplifiers you can buy for your tape player? You just built
+one. The LM386 will put out about half a watt (per channel). It will be
+plenty for a normal room or your bench or desk.
+
+You could build a mic input next - just the 1k resistor to V+ and the 1uF
+coupling cap to the volume control. Even without the mixer sections you'll be
+able to hear yourself talk. It won't be a totally new experience, but we're
+making progress. Don't want to risk your $300 Dave Clark's? Spend $.99 at
+Radio Shack for their 2-wire electret mic. Wire it in just like it was an
+acft mic (+ side to the 1k resistor/coupling cap input, - side to ground).
+I don't recommend using your good stuff for testing new circuits!
+
+Final construction: If you get all this stuff on a board, how do you hook it
+all up to jacks, plugs, and the airplane?
+My box has:
+  2 ea Headphone jacks - 1/4" stereo
+  2 ea Mic jacks         3/16" 3-conductor (gnd,mic,ptt)
+  1 ea volume control
+  1 ea squelch control
+  1 ea 4-pole 2-throw "bypass" switch
+  1 ea coaxial power jack (this could be a cord with cigar lighter plug on it)
+  1 ea copilot PTT (future)
+  2 ea Headphone jacks - 1/8" stereo
+  2 ea RCA jacks for passenger mics (future)
+  1 ea spdt switch for power - External or internal_battery
+  1 ea music input jack - 1/8" stereo
+  1 ea cord for acft hookup - to acft phones and mic jacks
+
+My PTT switch is mounted between the intercom and the acft mic jack. I had to
+modify it because the PTT line was only keyed on the plug side (toward the
+acft jack). (A PTT switch has a plug and a jack.) I wired it so the PTT
+connection in the plug also gets keyed. The intercom is connected into the
+plug side of the PTT switch, and this is how the intercom knows PTT has been
+pressed so it can mute the music and open the mics.
+
+The Mic jacks in the intercom only have the mic line wired - not the PTT,
+since my headphone mics don't have PTT on them. Do any? You can't put your
+PTT switch in-line here because most PTT switches cut out the mic unless
+PTT is pressed - not helpful for intercom use.
+
+I'm using 1/8" jacks for the passenger phones because long ago I wired the
+passengers' headphones with 1/8" (stereo) plugs to plug directly into a
+portable tape player. They still have that option, since our kids don't like
+our music (we have always had different front-seat and back-seat music), and
+I suspect they aren't that interested in ATC, since ATC seldom answers
+questions like "How much longer?"
+
+I wired in a bypass switch as a safety feature to be able to take the intercom
+out of the circuit instantly. It switches the radio output directly to the
+pilot and copilot headphones and switches the pilot's mic directly to the
+acft mic jack.
+Here are two sections of the 4-pole,double-throw switch:
+Bypass position is down, Intercom position is up:
+
+to mic input on intercom <--O   O --< mic output from intercom
+
+   from pilot's mic jack >--O   O --> to acft mic jack
+
+                            O---O
+
+Here are the other two sections:
+
+    intercom left output >--O   O--< intercom right output
+
+   to pilot's left phone <--O   O--> to pilot's right phone
+
+   acft headphone output >--O---O
+
+dave allen, colorado springs
